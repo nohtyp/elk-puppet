@@ -36,15 +36,19 @@
 # Copyright 2015 Your name here, unless otherwise noted.
 #
 class elk_puppet (
-$download_dir            = $elk_puppet::params::download_dir,
-$logstash_check_gpg      = $elk_puppet::params::logstash_check_gpg,
-$logstash_is_enabled     = $elk_puppet::params::logstash_is_enabled,
-$elastic_check_gpg       = $elk_puppet::params::elastic_check_gpg,
-$elastic_is_enabled      = $elk_puppet::params::elastic_is_enabled,
-$openjdk_java            = $elk_puppet::params::openjdk_java,
-$use_full_elk_stack      = $elk_puppet::params::use_full_elk_stack,
-$elasticsearch_baseurl   = $elk_puppet::params::elasticsearch_baseurl,
-$elasticsearch_gpg       = $elk_puppet::params::elasticsearch_gpg,
+$download_dir                  = $elk_puppet::params::download_dir,
+$logstash_check_gpg            = $elk_puppet::params::logstash_check_gpg,
+$logstash_is_enabled           = $elk_puppet::params::logstash_is_enabled,
+$elasticsearch_check_gpg       = $elk_puppet::params::elastic_check_gpg,
+$elasticsearch_is_enabled      = $elk_puppet::params::elastic_is_enabled,
+$openjdk_java                  = $elk_puppet::params::openjdk_java,
+$use_full_elk_stack            = $elk_puppet::params::use_full_elk_stack,
+$elasticsearch_baseurl         = $elk_puppet::params::elasticsearch_baseurl,
+$elasticsearch_gpgkey          = $elk_puppet::params::elasticsearch_gpg,
+$kibana_pkg_name               = $elk_puppet::params::kibana_pkg_name,
+$kibana_tar_url                = $elk_puppet::params::kibana_tar_url,
+$logstash_baseurl              = $elk_puppet::params::logstash_baseurl,
+$logstash_gpgkey               = $elk_puppet::params::logstash_gpgkey,
 
 ) inherits elk_puppet::params {
 
