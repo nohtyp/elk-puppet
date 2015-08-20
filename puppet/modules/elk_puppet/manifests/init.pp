@@ -42,16 +42,31 @@ $logstash_is_enabled     = $elk_puppet::params::logstash_is_enabled,
 $elastic_check_gpg       = $elk_puppet::params::elastic_check_gpg,
 $elastic_is_enabled      = $elk_puppet::params::elastic_is_enabled,
 $openjdk_java            = $elk_puppet::params::openjdk_java,
+$use_full_elk_stack      = $elk_puppet::params::use_full_elk_stack,
 
 ) inherits elk_puppet::params {
 
-anchor {'elk_puppet::begin': } ->
-  class {'::elk_puppet::elk_repo':} ->
-  class {'::elk_puppet::wget':} ->
-  class {'::elk_puppet::download':} ->
-  class {'::elk_puppet::kibana':} ->
-  class {'::elk_puppet::install':} ->
-  class {'::elk_puppet::java':} ->
-  class {'::elk_puppet::service':} ->
-anchor {'elk_puppet::end':}
+if $use_full_elk_stack == 'true' {
+
+    anchor {'elk_puppet::begin': } ->
+      class {'::elk_puppet::logstash_repo':} ->
+      class {'::elk_puppet::elasticsearch_repo':} ->
+      class {'::elk_puppet::logstash_install':} ->
+      class {'::elk_puppet::elasticsearch_install':} ->
+      class {'::elk_puppet::wget':} ->
+      class {'::elk_puppet::kibana_download':} ->
+      class {'::elk_puppet::kibana_install':} ->
+      class {'::elk_puppet::java':} ->
+      class {'::elk_puppet::logstash_service':} ->
+      class {'::elk_puppet::elasticsearch_service':} ->
+      anchor {'elk_puppet::end':}
+}
+else {
+      anchor {'elk_puppet::begin': } ->
+      class {'::elk_puppet::logstash_repo':} ->
+      class {'::elk_puppet::logstash_install':} ->
+      class {'::elk_puppet::java':} ->
+      class {'::elk_puppet::logstash_service':} ->
+    anchor {'elk_puppet::end':}
+   }
 }

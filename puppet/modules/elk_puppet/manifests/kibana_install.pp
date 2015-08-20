@@ -1,4 +1,4 @@
-class elk_puppet::kibana inherits elk_puppet {
+class elk_puppet::kibana_install inherits elk_puppet {
 
   exec { "Kibana install directory":
     path    => "/usr/bin",

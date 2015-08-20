@@ -1,4 +1,4 @@
-class elk_puppet::download inherits elk_puppet {
+class elk_puppet::kibana_download inherits elk_puppet {
 
   exec { "Kibana download":
     path      => "/usr/bin",
