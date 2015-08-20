@@ -43,6 +43,8 @@ $elastic_check_gpg       = $elk_puppet::params::elastic_check_gpg,
 $elastic_is_enabled      = $elk_puppet::params::elastic_is_enabled,
 $openjdk_java            = $elk_puppet::params::openjdk_java,
 $use_full_elk_stack      = $elk_puppet::params::use_full_elk_stack,
+$elasticsearch_baseurl   = $elk_puppet::params::elasticsearch_baseurl,
+$elasticsearch_gpg       = $elk_puppet::params::elasticsearch_gpg,
 
 ) inherits elk_puppet::params {
 
