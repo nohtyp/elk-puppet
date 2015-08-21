@@ -40,13 +40,21 @@ $logstash_check_gpg            = $logstash::params::logstash_check_gpg,
 $logstash_is_enabled           = $logstash::params::logstash_is_enabled,
 $logstash_baseurl              = $logstash::params::logstash_baseurl,
 $logstash_gpgkey               = $logstash::params::logstash_gpgkey,
+$use_logstash_repo             = $logstash::params::use_logstash_repo,
 
 ) inherits logstash::params {
 
-  anchor {'logstash::begin': } ->
-   class {'::logstash::logstash_repo':} ->
-   class {'::logstash::logstash_install':} ->
-   class {'::logstash::logstash_service':} ->
-  anchor {'logstash::end':}
+  if $use_logstash_repo == 'true' {
+    anchor {'logstash::begin': } ->
+     class {'::logstash::logstash_repo':} ->
+     class {'::logstash::logstash_install':} ->
+     class {'::logstash::logstash_service':} ->
+    anchor {'logstash::end':}
+  }
+  else {
+     anchor {'logstash::begin': } ->
+     class {'::logstash::logstash_install':} ->
+     class {'::logstash::logstash_service':} ->
+    anchor {'logstash::end':}
   }
 }

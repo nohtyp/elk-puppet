@@ -40,13 +40,21 @@ $elasticsearch_check_gpg       = $elasticsearch::params::elastic_check_gpg,
 $elasticsearch_is_enabled      = $elasticsearch::params::elastic_is_enabled,
 $elasticsearch_baseurl         = $elasticsearch::params::elasticsearch_baseurl,
 $elasticsearch_gpgkey          = $elasticsearch::params::elasticsearch_gpg,
+$use_elasticsearch_repo        = $elasticsearch::params::use_elasticsearch_repo,
 
 ) inherits elasticsearch::params {
 
-  anchor {'elasticsearch::begin': } ->
-   class {'::elasticsearch::elasticsearch_repo':} ->
-   class {'::elasticsearch::elasticsearch_install':} ->
-   class {'::elasticsearch::elasticsearch_service':} ->
-  anchor {'elasticsearch::end':}
+  if $use_elasticsearch_repo == 'true' {
+    anchor {'elasticsearch::begin': } ->
+     class {'::elasticsearch::elasticsearch_repo':} ->
+     class {'::elasticsearch::elasticsearch_install':} ->
+     class {'::elasticsearch::elasticsearch_service':} ->
+    anchor {'elasticsearch::end':}
+  }
+  else {
+    anchor {'elasticsearch::begin': } ->
+     class {'::elasticsearch::elasticsearch_install':} ->
+     class {'::elasticsearch::elasticsearch_service':} ->
+    anchor {'elasticsearch::end':}
   }
 }
