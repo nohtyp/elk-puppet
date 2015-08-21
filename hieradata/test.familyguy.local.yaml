@@ -1,0 +1,2 @@
+---
+elk_puppet::use_kibana_only: 'true'

@@ -1,0 +1,2 @@
+---
+elk_puppet::use_logstash_only: true
