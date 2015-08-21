@@ -47,6 +47,7 @@ $use_elasticsearch_repo        = $elasticsearch::params::use_elasticsearch_repo,
   if $use_elasticsearch_repo == 'true' {
     anchor {'elasticsearch::begin': } ->
      class {'::elasticsearch::elasticsearch_repo':} ->
+     class {'::elasticsearch::elasticsearch_gpgkey_import':} ->
      class {'::elasticsearch::elasticsearch_install':} ->
      class {'::elasticsearch::elasticsearch_service':} ->
     anchor {'elasticsearch::end':}

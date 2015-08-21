@@ -1,4 +1,4 @@
-# == Class: kibana
+# == Class: openjava
 #
 # Full description of class elk-puppet here.
 #
@@ -35,18 +35,12 @@
 #
 # Copyright 2015 Your name here, unless otherwise noted.
 #
-class kibana (
-$install_dir                   = $kibana::params::install_dir,
-$root_dir                      = $kibana::params::root_dir,
-$kibana_pkg_name               = $kibana::params::kibana_pkg_name,
-$kibana_tar_url                = $kibana::params::kibana_tar_url,
+class openjava (
+$openjdk_java                  = $openjava::params::openjdk_java,
 
-) inherits kibana::params {
+) inherits openjava::params {
 
-  anchor {'kibana::begin': } ->
-   class {'::kibana::wget':} ->
-   class {'::kibana::kibana_download':} ->
-   class {'::kibana::kibana_install':} ->
-   class {'::kibana::kibana_symlink':} ->
-  anchor {'kibana::end':}
+  anchor {'openjava::begin': } ->
+   class {'::openjava::java_install':} ->
+  anchor {'openjava::end':}
 }

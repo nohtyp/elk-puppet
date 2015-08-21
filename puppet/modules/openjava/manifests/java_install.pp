@@ -1,4 +1,4 @@
-class elk_puppet::java inherits elk_puppet {
+class openjava::java_install inherits openjava {
 
   package { "Installing OpenJDK":
     ensure  => installed,
